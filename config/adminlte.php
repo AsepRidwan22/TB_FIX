@@ -230,10 +230,17 @@ return [
         //     'topnav' => true,
         // ],
         [
-            'text' => 'blog',
+            'text' => 'Dashboard',
             'url'  => 'admin/blog',
-            'can'  => 'isAdmin',
+            'icon' => 'fas fa-tachometer-alt',
         ],
+
+        [
+            'text' => 'Pengelolaan Merek',
+            'url'  => 'brand',
+            'icon' => 'fas fa-fw fa-book',
+        ],
+
         // [
         //     'text'        => 'pages',
         //     'url'         => 'admin/pages',
@@ -344,7 +351,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
