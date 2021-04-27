@@ -236,7 +236,19 @@ return [
         ],
 
         [
-            'text' => 'Pengelolaan Merek',
+            'text' => 'Pengelolaan Barang',
+            'url'  => 'product',
+            'icon' => 'fas fa-fw fa-book',
+        ],
+
+        [
+            'text' => 'Kategori Barang',
+            'url'  => 'categorie',
+            'icon' => 'fas fa-fw fa-book',
+        ],
+
+        [
+            'text' => 'Merek Barang',
             'url'  => 'brand',
             'icon' => 'fas fa-fw fa-book',
         ],
