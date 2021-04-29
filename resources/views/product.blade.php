@@ -221,7 +221,8 @@
                         $('#edit-categories_id').val(res.categories_id);
                         $('#edit-old-photo').val(res.photo);
                         if (res.cover !== null){
-                            $('image-area').append("<img src='"+baseurl+"/storage/photo_product/"+res.photo+"' width='200px'>");
+                            // $('image-area').append("<img src='" + baseurl + "/storage/photo_product/" + res.photo + "' width='200px'>");
+                            $('#image-area').append(`<img src="${baseurl}/storage/photo_product/${res.photo}" width="200px"/>`);
                         } else {
                             $('#image-area').append('[Gambar tidak Tersedia]');
                         }

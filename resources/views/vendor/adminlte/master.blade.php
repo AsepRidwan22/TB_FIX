@@ -132,7 +132,7 @@
             toastr.error("{{ $errors }}");
         @endif
         $('#table-data').DataTable();
-        let baseurl = "<?=url('/')?>";
+        let baseurl = "<?= url('/') ?>";
         let fullurl = "<?=url()->full()?>";
     </script>
 
