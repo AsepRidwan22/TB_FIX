@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+
+    protected $table = 'brands';
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'char';
 }
