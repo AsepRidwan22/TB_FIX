@@ -29,7 +29,7 @@ class BrandController extends Controller
     {
         $user = Auth::user();
         $brands = brand::all();
-        return view('brand', compact('brands'));
+        return view('brand', compact('user', 'brands'));
     }
 
     public function submit_brand(Request $req){
@@ -83,7 +83,7 @@ class BrandController extends Controller
 
         $notification = array(
             'message' => 'Data Merek berhasil dihapus',
-            'alert-type' => 'success'
+            'alert-type' => 'warning'
         );
 
         return redirect()->route('brand')->with($notification);

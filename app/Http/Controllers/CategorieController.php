@@ -29,7 +29,7 @@ class CategorieController extends Controller
     {
         $user = Auth::user();
         $categories = Categorie::all();
-        return view('categorie', compact('categories'));
+        return view('categorie', compact('user', 'categories'));
     }
 
     public function submit_categorie(Request $req){

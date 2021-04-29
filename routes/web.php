@@ -39,7 +39,7 @@ Route::post('/categorie', [App\Http\Controllers\CategorieController::class, 'sub
 Route::patch('/categorie/update', [App\Http\Controllers\CategorieController::class, 'update_categorie'])->name('categorie.update');
 Route::delete('/categorie/delete', [App\Http\Controllers\CategorieController::class, 'delete_categorie'])->name('categorie.delete');
 
-// pengelolaan Brand
+// pengelolaan Product
 Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])->name('product');
 Route::get('/ajax/dataProduct/{id}', [App\Http\Controllers\ProductController::class, 'getDataProduct']);
 Route::post('/product', [App\Http\Controllers\ProductController::class, 'submit_product'])->name('product.submit');

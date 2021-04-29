@@ -250,7 +250,7 @@ return [
         [
             'text' => 'Merek Barang',
             'url'  => 'brand',
-            'icon' => 'fas fa-fw fa-book',
+            'icon' => 'fas fa-fw fa-archive',
         ],
 
         // [

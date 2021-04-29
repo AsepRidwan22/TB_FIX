@@ -35,8 +35,8 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->qty }}</td>
-                                        <td>{{ $product->brands_id }}</td>
-                                        <td>{{ $product->categories_id }}</td>
+                                        <td>{{ $product->brands->name }}</td>
+                                        <td>{{ $product->categories->name }}</td>
                                         <td>
                                             @if ($product->photo !== null)
                                                 <img src="{{ asset('storage/photo_product/'.$product->photo) }}" width="100px">
@@ -79,23 +79,23 @@
                         </div>
                         <div class="form-group">
                             <label for="qty">QTY</label>
-                            <input type="text" class="form-control" name="qty" id="qty" required>
+                            <input type="number" class="form-control" name="qty" id="qty" required>
                         </div>
                         <div class="form-group">
-                            <label for="brands_id">State</label>
-                            @foreach($products as $product)
-                                <select id="brand_id" class="form-control">
-                                    <option name="brands_id" value="{{ $product->brands_id }}">{{ $product->brands_id }}</option>
-                                </select>
-                            @endforeach
+                            <label for="brands_id">Merek</label>
+                            <select id="brands_id" class="form-control" name="brands_id">
+                                @foreach($brands as $brand)
+                                <option  class="form-control" name="brands_id" value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="categories_id">State</label>
-                            @foreach($products as $product)
-                                <select id="categorie_id" class="form-control">
-                                    <option name="categories_id" value="{{ $product->categories_id }}">{{ $product->categories_id }}</option>
-                                </select>
-                            @endforeach
+                            <label for="categories_id">Kategori</label>
+                            <select id="categories_id" class="form-control" name="categories_id">
+                                @foreach($categories as $categorie)
+                                <option name="categories_id" value="{{ $categorie->id }}">{{ $categorie->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="photo">PHOTO</label>
@@ -116,15 +116,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Produk Data</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Product Data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('product.update') }}" method="post">
-                        @csrf
-                        @method('PATCH')
+                    <form action="{{ route('product.update') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('PATCH')
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="edit-name">NAMA</label>
@@ -134,20 +135,38 @@
                                 <label for="edit-qty">QTY</label>
                                 <input type="text" class="form-control" name="qty" id="edit-qty" required>
                             </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="edit-photo">PHOTO</label>
-                                <input type="file" class="form-control" name="photo" id="edit-photo" required>
+                                <label for="edit-brands_id">Merek</label>
+                                <select id="edit-brands_id" class="form-control" name="brands_id">
+                                    @foreach($brands as $brand)
+                                    <option  class="form-control" name="brands_id" value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-categories_id">Kategori</label>
+                                <select id="edit-categories_id" class="form-control" name="categories_id">
+                                    @foreach($categories as $categorie)
+                                    <option name="categories_id" value="{{ $categorie->id }}">{{ $categorie->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group" id="image-area"></div>
+                            <div class="form-group">
+                                <label for="edit-photo">Photo</label>
+                                <input type="file" class="form-control" name="photo" id="edit-cover">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="id" id="edit-id">
-                    <input type="hidden" name="old_photo" id="edit-old-photo">
+                    <input type="hidden" name="old_photo" id="edit-old-cover">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    </form>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </form>
                 </div>
             </div>
         </div>
@@ -187,34 +206,33 @@
 @section('js')
     <script>
         $(function(){
-            $(document).on('click', '#btn-edit-brand', function(){
+            $(document).on('click', '#btn-edit-product', function(){
                 let id = $(this).data('id');
-
                 $('#image-area').empty();
                 $.ajax({
                     type: "get",
                     url: baseurl+'/ajax/dataProduct/'+id,
                     dataType: 'json',
                     success: function(res){
-                        $('#edit-id').val(res.id); //harus tambah id
+                        $('#edit-id').val(res.id);
                         $('#edit-name').val(res.name);
                         $('#edit-qty').val(res.qty);
+                        $('#edit-brands_id').val(res.brands_id);
+                        $('#edit-categories_id').val(res.categories_id);
                         $('#edit-old-photo').val(res.photo);
-
-                        if(res.cover !== null){
-                            $('image-area').append("<img src='"+baseurl+"/storage/photo_product/"+res.cover+"' width='200px'>");
-                        }else{
+                        if (res.cover !== null){
+                            $('image-area').append("<img src='"+baseurl+"/storage/photo_product/"+res.photo+"' width='200px'>");
+                        } else {
                             $('#image-area').append('[Gambar tidak Tersedia]');
                         }
-                    },
-                });
-            });
-            // delete brand
-            $(document).on('click', '#btn-delete-brand', function(){
-                let id = $(this).data('id');
+                    }
+                })
+            })
+        })
+        $(document).on('click', '#btn-delete-product', function(){
+            let id = $(this).data('id');
 
-                $('#delete-id').val(id);
-            });
+            $('#delete-id').val(id);
         });
     </script>
 @stop

@@ -169,12 +169,4 @@
             });
         });
     </script>
-    {{-- <script>
-        $(document).ready(function() {
-            $("#btn-edit-brand").click(function(){
-                let id = $(this).data('id');
-                $('#input-id').val(id);
-            });
-        });
-    </script> --}}
 @stop

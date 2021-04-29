@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Product;
+use App\Models\Brand;
+use App\Models\Categorie;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -30,7 +32,9 @@ class ProductController extends Controller
     {
         $user = Auth::user();
         $products = Product::all();
-        return view('product', compact('products'));
+        $brands = Brand::all();
+        $categories = Categorie::all();
+        return view('product', compact('user', 'products', 'brands', 'categories'));
     }
 
     public function submit_product(Request $req){
@@ -38,17 +42,19 @@ class ProductController extends Controller
 
         $product->name = $req->get('name');
         $product->qty = $req->get('qty');
-        $product->photo = $req->get('photo');
         $product->brands_id = $req->get('brands_id');
         $product->categories_id = $req->get('categories_id');
+        $product->photo = $req->get('photo');
 
         if($req->hasFile('photo')){
             $extension = $req->file('photo')->extension();
-            $filename = 'photo_product'.time().'.'.$extension;
+            $filename = 'photo_product' . time() . '.' . $extension;
 
             $req->file('photo')->storeAs(
                 'public/photo_product', $filename
             );
+
+            $product->photo = $filename;
         }
 
         $product->save();
@@ -76,16 +82,17 @@ class ProductController extends Controller
 
         $product->name = $req->get('name');
         $product->qty = $req->get('qty');
-        $product->photo = $req->get('photo');
+        $product->brands_id = $req->get('brands_id');
+        $product->categories_id = $req->get('categories_id');
 
         if($req->hasFile('photo')){
             $extension = $req->file('photo')->extension();
-            $filename = 'photo_product'.time().'.'.$extension;
+            $filename = 'photo_product'.time().'.'. $extension;
 
             $req->file('photo')->storeAs(
                 'public/photo_product', $filename
             );
-            Storage::delete('public/photo_product/'.$req->get('old_cover'));
+            Storage::delete('public/photo_product/'.$req->get('old_product'));
             $product->photo = $filename;
         }
 
@@ -103,7 +110,7 @@ class ProductController extends Controller
     {
         $product = Product::find($req->get('id'));
 
-        Storage::delete('public/photo_product/'.$req->get('old_cover'));
+        Storage::delete('public/photo_product/'.$req->get('old_photo'));
 
         $product->delete();
 
