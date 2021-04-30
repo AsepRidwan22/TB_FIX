@@ -20,7 +20,7 @@
         {{-- Name field --}}
         <div class="input-group mb-3">
             <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                   value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
+                   value="{{ old('username') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
@@ -29,6 +29,22 @@
             @if($errors->has('name'))
                 <div class="invalid-feedback">
                     <strong>{{ $errors->first('name') }}</strong>
+                </div>
+            @endif
+        </div>
+
+        {{-- Username field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="username" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}"
+                   value="{{ old('username') }}" placeholder="Username" autofocus>
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+            @if($errors->has('username'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('username') }}</strong>
                 </div>
             @endif
         </div>
@@ -45,6 +61,38 @@
             @if($errors->has('email'))
                 <div class="invalid-feedback">
                     <strong>{{ $errors->first('email') }}</strong>
+                </div>
+            @endif
+        </div>
+
+        {{-- photo field --}}
+        <div class="input-group mb-3">
+            <input type="photo" name="photo" class="form-control {{ $errors->has('photo') ? 'is-invalid' : '' }}"
+                   value="{{ old('photo') }}" placeholder="{{ __('adminlte::adminlte.photo') }}">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+            @if($errors->has('photo'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('photo') }}</strong>
+                </div>
+            @endif
+        </div>
+
+        {{-- role_id field --}}
+        <div class="input-group mb-3">
+            <input type="roles_id" name="roles_id" class="form-control {{ $errors->has('roles_id') ? 'is-invalid' : '' }}"
+                   value="{{ old('roles_id') }}" placeholder="{{ __('adminlte::adminlte.roles_id') }}">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+            @if($errors->has('roles_id'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('roles_id') }}</strong>
                 </div>
             @endif
         </div>

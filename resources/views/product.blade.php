@@ -156,7 +156,7 @@
                             <div class="form-group" id="image-area"></div>
                             <div class="form-group">
                                 <label for="edit-photo">Photo</label>
-                                <input type="file" class="form-control" name="photo" id="edit-cover">
+                                <input type="file" class="form-control" name="photo" id="edit-photo">
                             </div>
                         </div>
                     </div>
