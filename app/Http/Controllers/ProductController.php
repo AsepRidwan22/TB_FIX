@@ -31,6 +31,7 @@ class ProductController extends Controller
     public function index()
     {
         $user = Auth::user();
+        // $users = User::all();
         $products = Product::all();
         $brands = Brand::all();
         $categories = Categorie::all();
