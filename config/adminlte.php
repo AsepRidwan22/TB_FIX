@@ -230,27 +230,28 @@ return [
         //     'topnav' => true,
         // ],
         [
-            'text' => 'Dashboard',
-            'url'  => 'admin/blog',
-            'icon' => 'fas fa-tachometer-alt',
+            'text' => 'User',
+            'url'  => 'admin/user',
+            'can' => 'isAdmin',
+            // 'icon' => 'fas fa-tachometer-alt',
         ],
 
         [
             'text' => 'Pengelolaan Barang',
             'url'  => 'product',
-            'icon' => 'fas fa-fw fa-book',
+            // 'icon' => 'fas fa-fw fa-book',
         ],
 
         [
             'text' => 'Kategori Barang',
             'url'  => 'categorie',
-            'icon' => 'fas fa-fw fa-book',
+            // 'icon' => 'fas fa-fw fa-book',
         ],
 
         [
             'text' => 'Merek Barang',
             'url'  => 'brand',
-            'icon' => 'fas fa-fw fa-archive',
+            // 'icon' => 'fas fa-fw fa-archive',
         ],
 
         // [

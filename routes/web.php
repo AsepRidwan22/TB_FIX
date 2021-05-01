@@ -46,10 +46,10 @@ Route::post('/product', [App\Http\Controllers\ProductController::class, 'submit_
 Route::patch('/product/update', [App\Http\Controllers\ProductController::class, 'update_product'])->name('product.update');
 Route::delete('/product/delete', [App\Http\Controllers\ProductController::class, 'delete_product'])->name('product.delete');
 
-// Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home')->middleware('is_admin');
+Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home')->middleware('is_admin');
 
 Route::middleware('is_admin')->prefix('admin')->group(function(){
-    Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
+    Route::get('/user', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.user');
 });
 
 // Route::middleware('is_user')->prefix('user')->group(function(){
