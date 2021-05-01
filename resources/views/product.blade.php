@@ -153,6 +153,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <br>
                             <div class="form-group" id="image-area"></div>
                             <div class="form-group">
                                 <label for="edit-photo">Photo</label>
