@@ -46,6 +46,7 @@ Route::get('/ajax/dataProduct/{id}', [App\Http\Controllers\ProductController::cl
 Route::post('/product', [App\Http\Controllers\ProductController::class, 'submit_product'])->name('product.submit');
 Route::patch('/product/update', [App\Http\Controllers\ProductController::class, 'update_product'])->name('product.update');
 Route::delete('/product/delete', [App\Http\Controllers\ProductController::class, 'delete_product'])->name('product.delete');
+Route::get('/product/print_product', [App\Http\Controllers\ProductController::class, 'print_product'])->name('print.product');
 
 // pengelolaan user
 Route::middleware('is_admin')->prefix('admin')->group(function(){
@@ -59,7 +60,5 @@ Route::get('/ajax/dataUser/{id}', [App\Http\Controllers\AdminController::class, 
 // Route::middleware('is_user')->prefix('user')->group(function(){
 
 // });
-
-Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home')->middleware('is_admin');
 
 // PENGOLOLAAN BRANDS

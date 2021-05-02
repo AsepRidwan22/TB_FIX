@@ -233,13 +233,13 @@ return [
             'text' => 'User',
             'url'  => 'admin/user',
             'can' => 'isAdmin',
-            // 'icon' => 'fas fa-tachometer-alt',
+            'icon' => 'fas fa-user',
         ],
 
         [
             'text' => 'Pengelolaan Barang',
             'url'  => 'product',
-            // 'icon' => 'fas fa-fw fa-book',
+            // 'icon' => 'fas fa-product-hunt',
         ],
 
         [
@@ -252,6 +252,23 @@ return [
             'text' => 'Merek Barang',
             'url'  => 'brand',
             // 'icon' => 'fas fa-fw fa-archive',
+        ],
+
+        [
+            'text'    => 'Transaksi',
+            'icon'    => 'fas fa-fw fa-share',
+            'can'     => 'isAdmin',
+            'submenu' => [
+                [
+                    'text' => 'Barang Masuk',
+                    'url'  => 'admin/productin',
+                ],
+
+                [
+                    'text' => 'Barang Keluar',
+                    'url'  => '#',
+                ],
+            ],
         ],
 
         // [
@@ -272,44 +289,7 @@ return [
         //     'url'  => 'admin/settings',
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
-        // [
-        //     'text'    => 'multilevel',
-        //     'icon'    => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //         [
-        //             'text'    => 'level_one',
-        //             'url'     => '#',
-        //             'submenu' => [
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url'  => '#',
-        //                 ],
-        //                 [
-        //                     'text'    => 'level_two',
-        //                     'url'     => '#',
-        //                     'submenu' => [
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                     ],
-        //                 ],
-        //             ],
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //     ],
-        // ],
+
         // ['header' => 'labels'],
         // [
         //     'text'       => 'important',

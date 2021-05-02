@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Categorie;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class ProductController extends Controller
 {
@@ -121,5 +122,13 @@ class ProductController extends Controller
         );
 
         return redirect()->route('product')->with($notification);
+    }
+
+    public function print_product()
+    {
+        $product = Product::all();
+
+        $pdf = PDF::loadview('print_product', ['product' => $product]);
+        return $pdf->download('data_product.pdf');
     }
 }
