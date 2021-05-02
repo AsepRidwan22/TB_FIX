@@ -17,13 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/main', function () {
-    return view('main');
-});
+// Route::get('/main', function () {
+//     return view('main');
+// });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index_admin'])->name('admin.home')->middleware('is_admin');
 
 // pengelolaan Brand
 Route::get('/brand', [App\Http\Controllers\BrandController::class, 'index'])->name('brand');
