@@ -46,15 +46,19 @@ Route::post('/product', [App\Http\Controllers\ProductController::class, 'submit_
 Route::patch('/product/update', [App\Http\Controllers\ProductController::class, 'update_product'])->name('product.update');
 Route::delete('/product/delete', [App\Http\Controllers\ProductController::class, 'delete_product'])->name('product.delete');
 
-Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home')->middleware('is_admin');
-
+// pengelolaan user
 Route::middleware('is_admin')->prefix('admin')->group(function(){
-    Route::get('/user', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.user');
+    Route::get('/user', [App\Http\Controllers\AdminController::class, 'user'])->name('admin.user');
+    Route::post('/user', [App\Http\Controllers\AdminController::class, 'submit_user'])->name('admin.user.submit');
+    Route::patch('/user/update', [App\Http\Controllers\AdminController::class, 'update_user'])->name('admin.user.update');
 });
+Route::delete('/user/delete', [App\Http\Controllers\AdminController::class, 'delete_user'])->name('admin.user.delete');
+Route::get('/ajax/dataUser/{id}', [App\Http\Controllers\AdminController::class, 'getDataUser'])->middleware('is_admin');
 
 // Route::middleware('is_user')->prefix('user')->group(function(){
 
 // });
 
+Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home')->middleware('is_admin');
 
 // PENGOLOLAAN BRANDS
