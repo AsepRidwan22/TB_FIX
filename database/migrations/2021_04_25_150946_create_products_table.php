@@ -15,12 +15,27 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
+            $table->bigInteger('categories_id')->unsigned();
+            $table->bigInteger('brands_id')->unsigned();
             $table->integer('qty');
-            $table->foreignId('brands_id')->constrained();
-            $table->foreignId('categories_id')->constrained();
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->timestamps();
+            $table->index('id');
+        });
+
+        Schema::table('products', function (Blueprint $table){
+            $table->foreign('categories_id')
+            ->references('id')
+            ->on('categories')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+
+            $table->foreign('brands_id')
+            ->references('id')
+            ->on('brands')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

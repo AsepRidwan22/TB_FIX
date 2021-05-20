@@ -57,6 +57,15 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
 Route::delete('/user/delete', [App\Http\Controllers\AdminController::class, 'delete_user'])->name('admin.user.delete');
 Route::get('/ajax/dataUser/{id}', [App\Http\Controllers\AdminController::class, 'getDataUser'])->middleware('is_admin');
 
+Route::get('/take', [App\Http\Controllers\TakeController::class, 'index'])->name('take');
+Route::post('/take', [App\Http\Controllers\TakeController::class, 'submit_take'])->name('take.submit');
+
+Route::get('/admin/reportin', [App\Http\Controllers\ReportInController::class, 'index'])->name('admin.reports')->middleware('is_admin');
+Route::get('/admin/print_reportin', [App\Http\Controllers\ReportInController::class, 'print_reportin'])->name('admin.print_reportin')->middleware('is_admin');
+
+Route::get('/admin/reportout', [App\Http\Controllers\ReportOutController::class, 'index'])->name('admin.reportouts')->middleware('is_admin');
+Route::get('/admin/print_reportout', [App\Http\Controllers\ReportOutController::class, 'print_reportout'])->name('admin.print_reportout')->middleware('is_admin');
+
 // Route::middleware('is_user')->prefix('user')->group(function(){
 
 // });

@@ -233,7 +233,7 @@ return [
             'text' => 'User',
             'url'  => 'admin/user',
             'can' => 'isAdmin',
-            'icon' => 'fas fa-user',
+            // 'icon' => 'fas fa-user',
         ],
 
         [
@@ -255,18 +255,25 @@ return [
         ],
 
         [
+            'text'        => 'Pengambilan Barang',
+            'url'         => 'take',
+            'icon'        => 'fas fa-fw fa-exchange-alt',
+            'can'         => ['isUser','isAdmin'],
+        ],
+
+        [
             'text'    => 'Transaksi',
             'icon'    => 'fas fa-fw fa-share',
             'can'     => 'isAdmin',
             'submenu' => [
                 [
-                    'text' => 'Barang Masuk',
-                    'url'  => 'admin/productin',
+                    'text' => 'Laporan Barang Masuk',
+                    'url'  => 'admin/reportin',
                 ],
 
                 [
-                    'text' => 'Barang Keluar',
-                    'url'  => '#',
+                    'text' => 'Laporan Barang Keluar',
+                    'url'  => 'admin/reportout',
                 ],
             ],
         ],
