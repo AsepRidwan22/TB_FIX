@@ -3,12 +3,12 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Selamat Datang</h1>
 @stop
 
 @section('content')
-    <p> Admin Welcome to this beautiful admin panel.</p>
-    <p>login as user</p>
+    <p>di Sistem Pengelolaan Gudang</p>
+    <p>Anda login sebagai Admin</p>
 @stop
 
 @section('css')

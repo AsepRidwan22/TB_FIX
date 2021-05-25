@@ -17,13 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/main', function () {
-    return view('main');
-});
+// Route::get('/main', function () {
+//     return view('main');
+// });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index_admin'])->name('admin.home')->middleware('is_admin');
 
 // pengelolaan Brand
 Route::get('/brand', [App\Http\Controllers\BrandController::class, 'index'])->name('brand');
@@ -45,6 +46,7 @@ Route::get('/ajax/dataProduct/{id}', [App\Http\Controllers\ProductController::cl
 Route::post('/product', [App\Http\Controllers\ProductController::class, 'submit_product'])->name('product.submit');
 Route::patch('/product/update', [App\Http\Controllers\ProductController::class, 'update_product'])->name('product.update');
 Route::delete('/product/delete', [App\Http\Controllers\ProductController::class, 'delete_product'])->name('product.delete');
+Route::get('/product/print_product', [App\Http\Controllers\ProductController::class, 'print_product'])->name('print.product');
 
 // pengelolaan user
 Route::middleware('is_admin')->prefix('admin')->group(function(){
@@ -55,10 +57,17 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
 Route::delete('/user/delete', [App\Http\Controllers\AdminController::class, 'delete_user'])->name('admin.user.delete');
 Route::get('/ajax/dataUser/{id}', [App\Http\Controllers\AdminController::class, 'getDataUser'])->middleware('is_admin');
 
+Route::get('/take', [App\Http\Controllers\TakeController::class, 'index'])->name('take');
+Route::post('/take', [App\Http\Controllers\TakeController::class, 'submit_take'])->name('take.submit');
+
+Route::get('/admin/reportin', [App\Http\Controllers\ReportInController::class, 'index'])->name('admin.reports')->middleware('is_admin');
+Route::get('/admin/print_reportin', [App\Http\Controllers\ReportInController::class, 'print_reportin'])->name('admin.print_reportin')->middleware('is_admin');
+
+Route::get('/admin/reportout', [App\Http\Controllers\ReportOutController::class, 'index'])->name('admin.reportouts')->middleware('is_admin');
+Route::get('/admin/print_reportout', [App\Http\Controllers\ReportOutController::class, 'print_reportout'])->name('admin.print_reportout')->middleware('is_admin');
+
 // Route::middleware('is_user')->prefix('user')->group(function(){
 
 // });
-
-Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home')->middleware('is_admin');
 
 // PENGOLOLAAN BRANDS
